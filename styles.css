@@ -1,14 +1,14 @@
 .grid {
     border: 1px solid black;
-    height: 180px;
-    width: 180px;
+    height: 380px;
+    width: 380px;
     display: flex;
     flex-wrap: wrap;
 }
 
 .grid div {
-    height: 20px;
-    width: 20px;
+    height: 42px;
+    width: 42px;
 }
 
 .ending-block {
@@ -24,22 +24,29 @@
     background-color:  lightgray;
 }
 
-.frog img {
-    width: 20px;
-    height: 20px;
+.l1 {
+    background-image: url(./img/logpart1.png);
+    background-size: cover;
+} 
+
+.l2 {
+    background-image: url(./img/logpart2.png);
+    background-size: cover;
 }
 
-.l1, .l2, .l3 {
-    background-color: brown;
-
-}
+.l3 {
+    background-image: url(./img/logpart3.png);
+    background-size: cover;
+}  
 
 .l4, .l5 {
-    background-color: lightblue;
+    background-color: rgb(63, 168, 202);
 }
 
 .c1 {
-    background-color: black;
+    background-image: url(./img/car.png);
+    background-size: contain;
+    
 }
 
 .c2 {
@@ -47,14 +54,14 @@
 }
 
 .frog {
-    /* background-image: url(./img/pngwing.com.png); */
-    background-color: green;
+    background-image: url(./img/asdasd.png);
+    background-size: contain;
+    background-color: white;
 }
 
 .rules {
     color: #f15;
 }
-
 
 .messege {
     margin-top: 3em;

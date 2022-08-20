@@ -1,5 +1,4 @@
 const timeLeftDisplay = document.querySelector("#time-left");
-const resultDisplay = document.querySelector("#result");
 const startPauseButton = document.querySelector('#start-pause-button')
 const squares = document.querySelectorAll('.grid div') // toma todos los divs que esten dentro del grid, estan TODOS los cuadros del juego seleccionados
 const logsLeft = document.querySelectorAll('.log-left')
@@ -7,8 +6,6 @@ const logsRight = document.querySelectorAll('.log-right')
 const carsLeft = document.querySelectorAll('.car-left')
 const carsRight = document.querySelectorAll('.car-right')
 const messege = document.querySelector('.messege')
-
-
 
 
 
@@ -27,24 +24,16 @@ function moveFrog(e) { // se pasa el evento que devuelve el event listener como 
 
     switch (e.key) { // recordar que la palabra key es para referirse al teclado
         case 'ArrowLeft':
-            console.log('move left')
             if (currentIndex % width !== 0) currentIndex -= 1 // para limitar el perimetro: si currentIndex % width == 0, osea que es 0 o un multiplo de 9, sabemos que estamos parados en una de esas casillas. ahora, si no fuese asi, si la ecuacion es: currentIndex % width !== 0, entonces SI tiene que poder moverse a la izquierda. es decir que para que se pueda mover a la izquierda, la casilla NO tiene que ser multiplo de 9 
-            console.log(currentIndex)
             break
         case 'ArrowRight':
-            console.log('move right')
             if (currentIndex % width < width - 1) currentIndex += 1 // de esta manera el currentIndex se actualiza, y no suma numeros. Si el resto de currentindex/9 es menor que 8 entonces SI se puede mover // volver a leer este
-            console.log(currentIndex)
             break
         case 'ArrowUp':
-            console.log('move Up')
             if (currentIndex - width >= 0) currentIndex -= width // si el currentIndex - 9 es igual o mayor a 0 puede subir
-            console.log(currentIndex)
             break
         case 'ArrowDown':
-            console.log('move Down')
             if (currentIndex + width < width * width) currentIndex += width // si el currentIndex + 9 es menor que 81, puede bajar
-            console.log(currentIndex)
             break
     }
 
@@ -112,7 +101,6 @@ function moveLogRight(logRight) { // no se si es necesario ponerlo de vuelta...
     }
 }
 
-
 function moveCarLeft(carLeft) {
 
     switch (true) {
@@ -152,14 +140,13 @@ function moveCarRight(carRight) {
 
 function lose() { // fijarse si esto no podemos hacerlo un poco mas rapido
     if (squares[currentIndex].classList.contains('c1') || (squares[currentIndex].classList.contains('l4') || (squares[currentIndex].classList.contains('l5')))) {
-        resultDisplay.textContent = 'you lose!'
+        
         clearInterval(timerId)
         clearInterval(timeLeft)
         squares[currentIndex].classList.remove('frog')
         document.removeEventListener('keydown', moveFrog)
-        messege.textContent = 'Press Enter to play again'
+        messege.textContent = 'you lost! Press Enter to play again'
         document.addEventListener('keydown', (e) => {
-
             if (e.key === 'Enter') {
                 location. reload()
             }
@@ -170,18 +157,16 @@ function lose() { // fijarse si esto no podemos hacerlo un poco mas rapido
 function win() {
 
     if (squares[currentIndex].classList.contains('ending-block')) {
-        resultDisplay.textContent = 'you win!!!'
+        
         clearInterval(timerId)
         document.removeEventListener('keydown', moveFrog)
         clearInterval(timeLeft)
-        messege.textContent = 'Press Enter to play again'
+        messege.textContent = 'You win!! Press Enter to play again'
         document.addEventListener('keydown', (e) => {
-
             if (e.key === 'Enter') {
                 location. reload()
             }
         })
-
     }
 }
 
@@ -190,7 +175,7 @@ function checkTime() {
     currentTime--
     timeLeftDisplay.textContent = currentTime
     if (currentTime == 0) {
-        resultDisplay.textContent = 'you lose!'
+        
         clearInterval(timeLeft)
         clearInterval(timerId)
         document.removeEventListener('keydown', moveFrog)
