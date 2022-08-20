@@ -179,6 +179,12 @@ function checkTime() {
         clearInterval(timeLeft)
         clearInterval(timerId)
         document.removeEventListener('keydown', moveFrog)
+        messege.textContent = 'you lost! Press Enter to play again'
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                location. reload()
+            }
+        })
     }
 }
 
